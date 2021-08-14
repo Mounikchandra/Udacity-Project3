@@ -43,16 +43,15 @@ jobs:
           command: npm run build
   
   build-backend:
-    docker:
-      - image: circleci/node:13.8.0
+    executor: node
     steps:
       - checkout
       - attach_workspace:
           at: .
       - run:
-          name: 
+          name: Backend build
           working_directory: ./backend
-          command: Back-end build
+          command: npm run build
       - persist_to_workspace:
           root: .
           paths:
