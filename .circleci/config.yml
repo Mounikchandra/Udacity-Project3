@@ -103,7 +103,8 @@ jobs:
           path: ./backend/test_results
           
   scan-frontend:
-    executor: node
+    docker:
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - attach_workspace:
@@ -114,7 +115,8 @@ jobs:
           command: npm audit --audit-level=critical
 
   scan-backend:
-    executor: node
+    docker:
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - attach_workspace:
