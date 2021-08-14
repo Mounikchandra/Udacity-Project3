@@ -47,15 +47,16 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - restore_cache:
-          keys: [backend-build]
+      - attach_workspace:
+          at: .
       - run:
-          name: Back-end build
+          name: 
           working_directory: ./backend
-          command: npm run build
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-build
+          command: Back-end build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - backend/dist
 
 # Orchestrate our job run sequence
 workflows:
